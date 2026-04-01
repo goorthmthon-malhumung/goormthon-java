@@ -9,7 +9,7 @@ resources:
 configMapGenerator:
   - name: backend-config
     files:
-      - config.json=config/backend-config.json
+      - application.yaml=config/application.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
