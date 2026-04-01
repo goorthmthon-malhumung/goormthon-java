@@ -2,7 +2,6 @@
 FROM gradle:8.10-jdk21 AS build
 WORKDIR /app
 
-ENV KOTLIN_DAEMON_ENABLED=false
 ENV GRADLE_OPTS="-Dorg.gradle.daemon=false"
 
 COPY gradlew gradlew.bat settings.gradle.kts build.gradle.kts ./
