@@ -1,12 +1,19 @@
-# 1단계: Build stage
-FROM maven:3.9.6-eclipse-temurin-17 AS builder
+# Build stage
+FROM gradle:8.10-jdk21 AS build
 WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
 
-# 2단계: Runtime stage
-FROM eclipse-temurin:17-jre
+COPY gradlew gradlew.bat settings.gradle.kts build.gradle.kts ./
+COPY gradle ./gradle
+COPY subprojects ./subprojects
+
+RUN ./gradlew :ui:api:bootJar --no-daemon -x test
+
+# Run stage
+FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
-COPY --from=builder /app/target/*.jar ./
+
+COPY --from=build /app/subprojects/ui/api/build/libs/*.jar app.jar
+
 EXPOSE 8080
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
