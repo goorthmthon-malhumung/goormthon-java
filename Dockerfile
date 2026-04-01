@@ -2,10 +2,12 @@
 FROM gradle:8.10-jdk21 AS build
 WORKDIR /app
 
+
 COPY gradlew gradlew.bat settings.gradle.kts build.gradle.kts ./
 COPY gradle ./gradle
 COPY subprojects ./subprojects
 
+RUN chmod +x gradlew
 RUN ./gradlew :ui:api:bootJar --no-daemon -x test
 
 # Run stage
