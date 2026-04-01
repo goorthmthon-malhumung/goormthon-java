@@ -1,4 +1,4 @@
 {
-  "GREETING": "Hello from Backend",
-  "PORT": 8080
+  "DB_URL": "jdbc:mysql://mysql:3306/mydb",
+  "DB_DRIVER": "com.mysql.cj.jdbc.Driver"
 }
