@@ -3,6 +3,7 @@ springdoc:
     url: v3/api-docs
 
 server:
+  forward-headers-strategy: framework
   servlet:
     session:
       cookie:
