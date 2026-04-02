@@ -68,10 +68,10 @@ class ExperienceDetail(
     var updatedAt: LocalDateTime = LocalDateTime.now()
 
     @Column(length = 500)
-    val photoUrl: String? = null
+    var photoUrl: String? = null
 
     @Column(length = 500)
-    val photoUrl2: String? = null
+    var photoUrl2: String? = null
 }
 
 enum class ExperienceType {
