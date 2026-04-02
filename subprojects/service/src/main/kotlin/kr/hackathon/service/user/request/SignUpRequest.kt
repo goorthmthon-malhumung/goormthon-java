@@ -7,5 +7,4 @@ data class SignUpRequest(
     val isMentor: Boolean,
     val jobTitle: String = "멘티",
     val experience: Int = 0,
-    val introduce: String = ""
 )
