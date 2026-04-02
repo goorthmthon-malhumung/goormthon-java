@@ -9,7 +9,7 @@ namespace: goormthon-1 # fix me
 
 images:
   - name: mysql
-    newTag: 5.7
+    newTag: 8.0
 
 patches:
   - target:
