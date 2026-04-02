@@ -1,3 +1,10 @@
 springdoc:
   swagger-ui:
     url: v3/api-docs
+
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true
