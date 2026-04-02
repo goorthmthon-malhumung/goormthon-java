@@ -18,8 +18,6 @@ FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 
 COPY --from=build /app/subprojects/ui/api/build/libs/*.jar app.jar
-COPY --from=build ./photo /app/photo
-COPY --from=build ./media /app/media
 
 EXPOSE 8080
 
