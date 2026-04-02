@@ -6,13 +6,8 @@ mydb;
 
 CREATE TABLE IF NOT EXISTS member
 (
-    id
-    BIGINT
-    AUTO_INCREMENT
-    PRIMARY
-    KEY,
-    name
-    VARCHAR (255) NOT NULL,
+    id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name       VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR (255) NOT NULL,
     is_mentor  BOOLEAN   NOT NULL,
@@ -68,7 +63,7 @@ CREATE TABLE IF NOT EXISTS experience_booking (
     end_date      DATE      NOT NULL COMMENT '예약 종료일',
     status        ENUM('PENDING', 'CONFIRMED', 'CANCELLED', 'COMPLETED') NOT NULL DEFAULT 'PENDING' COMMENT '예약 상태',
     created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- =============================================
