@@ -1,6 +1,7 @@
 package kr.hackathon.domain.category.entity
 
 import jakarta.persistence.*
+import lombok.NoArgsConstructor
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -8,6 +9,7 @@ import java.time.LocalDateTime
 
 @EntityListeners(AuditingEntityListener::class)
 @Entity
+@NoArgsConstructor
 @Table(name = "category_intro")
 class CategoryIntro(
     @Enumerated(EnumType.STRING)
@@ -25,7 +27,7 @@ class CategoryIntro(
     val id: Long = 0
 
     @CreatedDate
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    var createdAt: LocalDateTime = LocalDateTime.now()
 
     @LastModifiedDate
     var updatedAt: LocalDateTime = LocalDateTime.now()

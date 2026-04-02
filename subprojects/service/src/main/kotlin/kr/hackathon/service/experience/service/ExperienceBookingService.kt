@@ -55,7 +55,7 @@ class ExperienceBookingService(
         startDate = startDate,
         endDate = endDate,
         status = status,
-        createdAt = createdAt,
+        createdAt = createdAt!!,
     )
 
     private fun ExperienceBooking.toResponse() = ExperienceBookingResponse(
@@ -65,6 +65,6 @@ class ExperienceBookingService(
         startDate = startDate,
         endDate = endDate,
         status = status,
-        createdAt = createdAt,
+        createdAt = createdAt!!,
     )
 }

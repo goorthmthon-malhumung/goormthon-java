@@ -2,6 +2,7 @@ package kr.hackathon.domain.experience.entity
 
 import jakarta.persistence.*
 import kr.hackathon.domain.user.entity.Member
+import lombok.NoArgsConstructor
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -11,6 +12,7 @@ import java.time.LocalTime
 
 @EntityListeners(AuditingEntityListener::class)
 @Entity
+@NoArgsConstructor
 @Table(name = "experience_detail")
 class ExperienceDetail(
     @ManyToOne(fetch = FetchType.LAZY)
@@ -59,10 +61,10 @@ class ExperienceDetail(
     val id: Long = 0
 
     @CreatedDate
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    var createdAt: LocalDateTime? = null
 
     @LastModifiedDate
-    var updatedAt: LocalDateTime = LocalDateTime.now()
+    var updatedAt: LocalDateTime? = null
 
     @Column(length = 500)
     var photoUrl: String? = null

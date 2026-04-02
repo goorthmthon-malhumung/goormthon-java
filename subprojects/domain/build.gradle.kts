@@ -7,6 +7,8 @@ dependencies {
     implementation("mysql:mysql-connector-java:8.0.33")
     implementation(kotlin("stdlib-jdk8"))
     runtimeOnly("com.h2database:h2")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 }
 
 tasks {

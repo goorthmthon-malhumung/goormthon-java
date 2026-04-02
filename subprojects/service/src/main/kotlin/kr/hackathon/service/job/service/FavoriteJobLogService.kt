@@ -29,6 +29,6 @@ class FavoriteJobLogService(
         id = id,
         userId = user.id,
         jobId = job.id,
-        createdAt = createdAt,
+        createdAt = createdAt!!,
     )
 }
