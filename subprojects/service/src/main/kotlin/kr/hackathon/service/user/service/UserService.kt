@@ -29,9 +29,8 @@ class UserService(
                 password = passwordEncoder.encode(request.password),
                 isMentor = request.isMentor,
             ).apply {
-                introduce = request.introduce
-                interests = request.interests
-                workYear = request.workYear
+                jobTitle = request.jobTitle
+                workYear = request.experience
             }
         )
 
@@ -46,7 +45,8 @@ class UserService(
             id = member.id,
             name = member.name,
             isMentor = member.isMentor,
-            introduce = member.introduce,
+            jobTitle = member.jobTitle,
+            workYear = member.workYear,
         )
     }
 

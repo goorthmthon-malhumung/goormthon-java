@@ -9,7 +9,7 @@ import kr.hackathon.domain.job.entity.PhysicalLevel
 import kr.hackathon.domain.job.repository.JobRepository
 import kr.hackathon.domain.job.repository.JobSpecification
 import kr.hackathon.domain.user.repository.MemberRepository
-import kr.hackathon.service.job.request.CreateJobRequest
+import kr.hackathon.service.job.request.SaveJobRequest
 import kr.hackathon.service.job.response.JobDetailResponse
 import kr.hackathon.service.job.response.JobListResponse
 import org.springframework.data.domain.Page
@@ -49,13 +49,14 @@ class JobService(
         return job.toDetailResponse()
     }
 
-    fun createJob(
+    fun saveJob(
         userId: Long,
-        request: CreateJobRequest,
-        photoUrl: String?,
+        request: SaveJobRequest,
         mainUrl: String?,
+        photoUrl: String?,
+        photoUrl2: String?,
         mediaUrl: String?,
-        mediaUrl2: String?,
+        mediaUrl2: String?
     ): JobDetailResponse {
         val user = memberRepository.findById(userId)
             .orElseThrow { IllegalArgumentException("존재하지 않는 사용자입니다.") }
@@ -68,11 +69,13 @@ class JobService(
                 skills = request.skills,
                 workHours = request.workHours,
                 physicalLevel = request.physicalLevel,
-                photoUrl = photoUrl,
-                mainUrl = mainUrl,
-                mediaUrl = mediaUrl,
-                mediaUrl2 = mediaUrl2,
-            )
+            ).apply {
+                this.photoUrl = photoUrl
+                this.photo2Url = photoUrl2
+                this.mainUrl = mainUrl
+                this.mediaUrl = mediaUrl
+                this.mediaUrl2 = mediaUrl2
+            }
         )
         return job.toDetailResponse()
     }
@@ -84,9 +87,11 @@ class JobService(
         skills = skills.toStringList(),
         workHours = workHours,
         physicalLevel = physicalLevel,
-        mediaUrl = mediaUrl,
         photoUrl = photoUrl,
+        photo2Url = photo2Url,
         mainUrl = mainUrl,
+        mediaUrl = mediaUrl,
+        mediaUrl2 = mediaUrl2,
         createdAt = createdAt,
     )
 
@@ -101,9 +106,11 @@ class JobService(
             skills = skills.toStringList(),
             workHours = workHours,
             physicalLevel = physicalLevel,
-            mediaUrl = mediaUrl,
             photoUrl = photoUrl,
+            photo2Url = photo2Url,
             mainUrl = mainUrl,
+            mediaUrl = mediaUrl,
+            mediaUrl2 = mediaUrl2,
             createdAt = createdAt,
             categoryIntroduction = categoryIntroduction,
         )

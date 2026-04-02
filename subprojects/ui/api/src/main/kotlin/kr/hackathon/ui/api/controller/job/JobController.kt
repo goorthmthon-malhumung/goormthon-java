@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpSession
 import kr.hackathon.domain.job.entity.PhysicalLevel
-import kr.hackathon.service.job.request.CreateJobRequest
+import kr.hackathon.service.job.request.SaveJobRequest
 import kr.hackathon.service.job.service.JobService
 import kr.hackathon.service.user.session.SESSION_USER_KEY
 import kr.hackathon.service.user.session.SessionUser
@@ -56,11 +56,12 @@ class JobController(
         return ResponseEntity.ok(ApiResponse.success(jobService.getJob(id)))
     }
 
-    @Operation(summary = "직업 등록", description = "새로운 직업을 등록합니다. 로그인 세션이 필요합니다.")
+    @Operation(summary = "직업 저장", description = "직업을 저장합니다. 신규 등록 및 기존 정보 수정에 모두 사용됩니다. 로그인 세션이 필요합니다.")
     @PostMapping(consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
-    fun createJob(
-        @RequestPart("data") request: CreateJobRequest,
+    fun saveJob(
+        @RequestPart("data") request: SaveJobRequest,
         @RequestPart("photoUrl", required = false) photoFile: MultipartFile?,
+        @RequestPart("photo2Url", required = false) photoFile2: MultipartFile?,
         @RequestPart("mainUrl", required = false) mainFile: MultipartFile?,
         @RequestPart("mediaUrl", required = false) mediaFile: MultipartFile?,
         @RequestPart("mediaUrl2", required = false) mediaFile2: MultipartFile?,
@@ -72,12 +73,13 @@ class JobController(
             ))
 
         val photoUrl = photoFile?.let { fileStorageService.storePhoto(it) }
+        val photoUrl2 = photoFile2?.let { fileStorageService.storePhoto(it) }
         val mainUrl = mainFile?.let { fileStorageService.storePhoto(it) }
         val mediaUrl = mediaFile?.let { fileStorageService.storeMedia(it) }
         val mediaUrl2 = mediaFile2?.let { fileStorageService.storeMedia(it) }
 
         return ResponseEntity.ok(ApiResponse.success(
-            jobService.createJob(sessionUser.id, request, photoUrl, mainUrl, mediaUrl, mediaUrl2)
+            jobService.saveJob(sessionUser.id, request, mainUrl, photoUrl, photoUrl2, mediaUrl, mediaUrl2)
         ))
     }
 }

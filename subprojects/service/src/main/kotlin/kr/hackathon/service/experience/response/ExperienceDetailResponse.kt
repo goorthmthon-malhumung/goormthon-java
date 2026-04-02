@@ -15,8 +15,10 @@ data class ExperienceDetailResponse(
     val schedule: String,
     val inclusions: List<String>?,
     val requirements: List<String>?,
+    val mainUrl: String?,
     val photoUrl: String?,
     val photoUrl2: String?,
+    val mediaUrl: String?,
+    val mediaUrl2: String?,
     val jobId: Long?,
-    val categoryIntroduction: String?,
 )

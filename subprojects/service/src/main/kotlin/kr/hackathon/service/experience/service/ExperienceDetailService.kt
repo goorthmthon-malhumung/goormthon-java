@@ -2,7 +2,6 @@ package kr.hackathon.service.experience.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import kr.hackathon.domain.category.entity.CategoryType
 import kr.hackathon.domain.category.repository.CategoryIntroRepository
 import kr.hackathon.domain.experience.entity.ExperienceDetail
 import kr.hackathon.domain.experience.repository.ExperienceDetailRepository
@@ -35,6 +34,8 @@ class ExperienceDetailService(
         request: CreateExperienceDetailRequest,
         photoUrl: String?,
         photoUrl2: String?,
+        mediaUrl: String?,
+        mediaUrl2: String?
     ): ExperienceDetailResponse {
         val user = memberRepository.findById(userId)
             .orElseThrow { IllegalArgumentException("존재하지 않는 사용자입니다.") }
@@ -56,15 +57,14 @@ class ExperienceDetailService(
             ).apply {
                 this.photoUrl = photoUrl
                 this.photoUrl2 = photoUrl2
+                this.mediaUrl = mediaUrl
+                this.mediaUrl2 = mediaUrl2
             }
         )
         return experience.toResponse()
     }
 
     private fun ExperienceDetail.toResponse(): ExperienceDetailResponse {
-        val categoryIntroduction = categoryIntroRepository
-            .findByCategoryTypeAndCategoryName(CategoryType.EXPERIENCE, experienceType.name)
-            ?.introduction
         return ExperienceDetailResponse(
             id = id,
             experienceType = experienceType,
@@ -76,10 +76,12 @@ class ExperienceDetailService(
             schedule = schedule,
             inclusions = inclusions.toStringList(),
             requirements = requirements.toStringList(),
+            mainUrl = mainUrl,
             photoUrl = photoUrl,
+            mediaUrl = mediaUrl,
+            mediaUrl2 = mediaUrl2,
             photoUrl2 = photoUrl2,
             jobId = jobId,
-            categoryIntroduction = categoryIntroduction,
         )
     }
 }

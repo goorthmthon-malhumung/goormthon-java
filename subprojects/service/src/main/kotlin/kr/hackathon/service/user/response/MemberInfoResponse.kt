@@ -4,5 +4,6 @@ data class MemberInfoResponse(
     val id: Long,
     val name: String,
     val isMentor: Boolean,
-    val introduce: String,
+    val jobTitle: String,
+    val workYear: Int,
 )

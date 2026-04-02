@@ -45,9 +45,6 @@ class ExperienceDetail(
     @Column(columnDefinition = "JSON")
     val requirements: String? = null,
 
-    @Column(length = 500)
-    val mainUrl: String? = null,
-
     @Column(nullable = false)
     val price: Long,
 
@@ -72,6 +69,15 @@ class ExperienceDetail(
 
     @Column(length = 500)
     var photoUrl2: String? = null
+
+    @Column(length = 500)
+    var mediaUrl: String? = null
+
+    @Column(length = 500)
+    var mediaUrl2: String? = null
+
+    @Column(length = 500)
+    var mainUrl: String? = null
 }
 
 enum class ExperienceType {

@@ -10,8 +10,8 @@ import kr.hackathon.service.user.session.SESSION_USER_KEY
 import kr.hackathon.service.user.session.SessionUser
 import kr.hackathon.ui.api.common.response.ApiResponse
 import org.springframework.http.ResponseEntity
+import kr.hackathon.ui.api.common.response.ErrorResponse
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -56,12 +56,16 @@ class UserController(
         return ResponseEntity.ok(ApiResponse.success(sessionUser))
     }
 
-    @Operation(summary = "회원 정보 조회", description = "회원 ID로 이름, 멘토 여부, 소개 글을 조회합니다.")
-    @GetMapping("/{memberId}")
+    @Operation(summary = "회원 정보 조회", description = "세션에 저장된 로그인 사용자의 이름, 멘토 여부, 소개 글을 조회합니다.")
+    @GetMapping
     fun getMemberInfo(
-        @PathVariable memberId: Long,
+        session: HttpSession,
     ): ResponseEntity<ApiResponse<*>> {
-        return ResponseEntity.ok(ApiResponse.success(userService.getMemberInfo(memberId)))
+        val sessionUser = session.getAttribute(SESSION_USER_KEY) as? SessionUser
+            ?: return ResponseEntity.status(401).body(ApiResponse.error(
+                ErrorResponse("UNAUTHORIZED", "로그인이 필요합니다.")
+            ))
+        return ResponseEntity.ok(ApiResponse.success(userService.getMemberInfo(sessionUser.id)))
     }
 
     @Operation(summary = "로그아웃", description = "세션을 삭제하고 로그아웃합니다.")

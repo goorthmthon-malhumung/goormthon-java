@@ -7,6 +7,9 @@ COPY gradle ./gradle
 COPY subprojects ./subprojects
 COPY gradle.properties ./
 
+COPY photo ./
+COPY media ./
+
 RUN chmod +x gradlew
 RUN ./gradlew :ui:api:bootJar --no-daemon -x test
 

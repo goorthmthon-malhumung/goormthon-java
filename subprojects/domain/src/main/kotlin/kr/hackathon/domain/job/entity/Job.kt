@@ -30,18 +30,6 @@ class Job(
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     val physicalLevel: PhysicalLevel,
-
-    @Column(length = 500)
-    val photoUrl: String? = null,
-
-    @Column(length = 500)
-    val mainUrl: String? = null,
-
-    @Column(length = 500)
-    val mediaUrl: String? = null,
-
-    @Column(length = 500)
-    val mediaUrl2: String? = null,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +40,21 @@ class Job(
 
     @LastModifiedDate
     var updatedAt: LocalDateTime = LocalDateTime.now()
+
+    @Column(length = 500)
+    var photoUrl: String? = null
+
+    @Column(length = 500)
+    var photo2Url: String? = null
+
+    @Column(length = 500)
+    var mainUrl: String? = null
+
+    @Column(length = 500)
+    var mediaUrl: String? = null
+
+    @Column(length = 500)
+    var mediaUrl2: String? = null
 }
 
 enum class PhysicalLevel {

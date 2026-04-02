@@ -26,9 +26,7 @@ class Member(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
 
-    var introduce: String = ""
-
-    var interests: String = ""
+    var jobTitle: String = "멘티"
 
     var workYear: Int = 0
 

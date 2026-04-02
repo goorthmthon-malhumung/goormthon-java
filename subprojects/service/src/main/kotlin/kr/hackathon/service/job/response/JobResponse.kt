@@ -10,9 +10,11 @@ data class JobListResponse(
     val skills: List<String>,
     val workHours: String,
     val physicalLevel: PhysicalLevel,
-    val mediaUrl: String?,
     val photoUrl: String?,
+    val photo2Url: String?,
     val mainUrl: String?,
+    val mediaUrl: String?,
+    val mediaUrl2: String?,
     val createdAt: LocalDateTime,
 )
 
@@ -23,9 +25,11 @@ data class JobDetailResponse(
     val skills: List<String>,
     val workHours: String,
     val physicalLevel: PhysicalLevel,
-    val mediaUrl: String?,
     val photoUrl: String?,
+    val photo2Url: String?,
     val mainUrl: String?,
+    val mediaUrl: String?,
+    val mediaUrl2: String?,
     val createdAt: LocalDateTime,
     val categoryIntroduction: String?,
 )
