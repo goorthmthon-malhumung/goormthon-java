@@ -1,8 +1,6 @@
 -- spmple SQL script --
-CREATE
-DATABASE IF NOT EXISTS mydb;
-USE
-mydb;
+CREATE DATABASE IF NOT EXISTS mydb;
+USE mydb;
 
 CREATE TABLE IF NOT EXISTS member
 (
@@ -104,5 +102,4 @@ INSERT INTO category_intro (category_type, category_name, introduction) VALUES
 
 
 GRANT ALL PRIVILEGES ON mydb . * TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
-FLUSH
-PRIVILEGES;
+FLUSH PRIVILEGES;
