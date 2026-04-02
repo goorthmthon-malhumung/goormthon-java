@@ -114,15 +114,15 @@ INSERT INTO category_intro (category_type, category_name, introduction) VALUES
 -- =============================================
 
 -- member (멘토 4명 + 멘티 4명)
-INSERT INTO member (name, phone, password, is_mentor, job_title, work_year, introduce) VALUES
-('김해녀', '010-1111-0001', '$2a$10$dummyhash1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '해녀',      20, '제주 바다와 함께한 20년 경력의 해녀입니다. 물질 기술과 해녀 문화를 나누고 싶습니다.'),
-('박돌담', '010-1111-0002', '$2a$10$dummyhash2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '돌담 장인',  15, '제주 현무암 돌담을 15년째 쌓아온 장인입니다. 전통 방식 그대로의 기술을 전수합니다.'),
-('이감귤', '010-1111-0003', '$2a$10$dummyhash3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '감귤 농부',  10, '서귀포에서 10년째 감귤 농사를 짓고 있습니다. 수확부터 출하까지 함께합니다.'),
-('최목장', '010-1111-0004', '$2a$10$dummyhash4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '목장지기',  12, '제주 초원에서 말과 소를 12년째 돌보고 있습니다. 목장 생활의 모든 것을 알려드립니다.'),
-('홍길동', '010-2222-0001', '$2a$10$dummyhash5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0, '제주 전통 문화에 관심이 많은 청년입니다.'),
-('이민지', '010-2222-0002', '$2a$10$dummyhash6aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0, '바다와 자연을 좋아해서 해녀 체험에 관심이 생겼습니다.'),
-('박준혁', '010-2222-0003', '$2a$10$dummyhash7aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0, '제주로 이주를 꿈꾸며 다양한 직종을 탐색 중입니다.'),
-('김수연', '010-2222-0004', '$2a$10$dummyhash8aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0, '농촌 생활에 관심이 많아 귀농을 준비하고 있습니다.');
+INSERT INTO member (name, phone, password, is_mentor, job_title, work_year) VALUES
+('김해녀', '010-1111-0001', '$2a$10$dummyhash1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '해녀',      20),
+('박돌담', '010-1111-0002', '$2a$10$dummyhash2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '돌담 장인',  15),
+('이감귤', '010-1111-0003', '$2a$10$dummyhash3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '감귤 농부',  10),
+('최목장', '010-1111-0004', '$2a$10$dummyhash4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '목장지기',  12),
+('홍길동', '010-2222-0001', '$2a$10$dummyhash5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0),
+('이민지', '010-2222-0002', '$2a$10$dummyhash6aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0),
+('박준혁', '010-2222-0003', '$2a$10$dummyhash7aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0),
+('김수연', '010-2222-0004', '$2a$10$dummyhash8aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', FALSE, '멘티',       0);
 
 -- job (멘토별 대표 직업 1개씩)
 INSERT INTO job (user_id, title, job_type, skills, work_hours, physical_level, photo_url, main_url) VALUES
