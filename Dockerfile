@@ -7,9 +7,6 @@ COPY gradle ./gradle
 COPY subprojects ./subprojects
 COPY gradle.properties ./
 
-COPY photo/ ./
-COPY media/ ./
-
 RUN chmod +x gradlew
 RUN ./gradlew :ui:api:bootJar --no-daemon -x test
 
@@ -18,6 +15,8 @@ FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 
 COPY --from=build /app/subprojects/ui/api/build/libs/*.jar app.jar
+COPY photo/ ./photo/
+COPY media/ ./media/
 
 EXPOSE 8080
 
