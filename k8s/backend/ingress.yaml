@@ -7,6 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-always-set-cookie: "true"
     nginx.ingress.kubernetes.io/session-cookie-conditional-samesite-none: "true"
     nginx.ingress.kubernetes.io/session-cookie-samesite: "None"
+    nginx.ingress.kubernetes.io/proxy-cookie-flags: "HttpOnly;Secure"
     nginx.ingress.kubernetes.io/proxy-cookie-domain: "localhost junhugae.goorm.training"
     nginx.ingress.kubernetes.io/proxy-cookie-path: "/ /"
     nginx.ingress.kubernetes.io/affinity: "cookie"
