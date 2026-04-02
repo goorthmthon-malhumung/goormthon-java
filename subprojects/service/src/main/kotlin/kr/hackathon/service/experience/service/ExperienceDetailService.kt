@@ -51,11 +51,12 @@ class ExperienceDetailService(
                 schedule = request.schedule,
                 inclusions = request.inclusions.toJson(),
                 requirements = request.requirements.toJson(),
-                photoUrl = photoUrl,
-                photoUrl2 = photoUrl2,
                 price = request.price,
                 jobId = request.jobId,
-            )
+            ).apply {
+                this.photoUrl = photoUrl
+                this.photoUrl2 = photoUrl2
+            }
         )
         return experience.toResponse()
     }
