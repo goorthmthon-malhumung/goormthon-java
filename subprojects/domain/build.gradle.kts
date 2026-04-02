@@ -6,6 +6,7 @@ dependencies {
     kapt("com.querydsl:querydsl-apt:$queryDslVersion:jakarta")
     implementation("mysql:mysql-connector-java:8.0.33")
     implementation(kotlin("stdlib-jdk8"))
+    runtimeOnly("com.h2database:h2")
 }
 
 tasks {

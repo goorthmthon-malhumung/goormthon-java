@@ -3,6 +3,7 @@ package kr.hackathon.ui.api.controller.user
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpSession
+import kr.hackathon.service.user.request.SignInRequest
 import kr.hackathon.service.user.request.SignUpRequest
 import kr.hackathon.service.user.service.UserService
 import kr.hackathon.service.user.session.SESSION_USER_KEY
@@ -34,9 +35,21 @@ class UserController(
     }
 
 
+    @Operation(summary = "로그인", description = "휴대폰 번호와 비밀번호로 로그인 후 세션에 로그인 정보를 저장합니다.")
+    @PostMapping("/sign-in")
+    fun signIn(
+        @RequestBody request: SignInRequest,
+        session: HttpSession,
+    ): ResponseEntity<ApiResponse<*>> {
+        val sessionUser = userService.signIn(request)
+        session.setAttribute(SESSION_USER_KEY, sessionUser)
+        session.maxInactiveInterval = -1
+        return ResponseEntity.ok(ApiResponse.success(sessionUser))
+    }
+
     @Operation(summary = "로그인 여부 확인", description = "세션이 존재하면 로그인된 사용자 정보를 반환합니다. 세션이 없으면 로그인되지 않은 상태입니다.")
     @GetMapping("/me")
-    fun me(session: HttpSession): ResponseEntity<ApiResponse<*>> {
+    fun me(session: HttpSession, ): ResponseEntity<ApiResponse<*>> {
         val sessionUser = session.getAttribute(SESSION_USER_KEY) as? SessionUser
             ?: return ResponseEntity.ok(ApiResponse.success(null))
         return ResponseEntity.ok(ApiResponse.success(sessionUser))
