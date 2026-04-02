@@ -41,6 +41,8 @@ class ExperienceDetailController(
         @RequestPart("data") request: CreateExperienceDetailRequest,
         @RequestPart("photoUrl", required = false) photoFile: MultipartFile?,
         @RequestPart("photoUrl2", required = false) photoFile2: MultipartFile?,
+        @RequestPart("mediaUrl", required = false) mediaFile: MultipartFile?,
+        @RequestPart("mediaUrl2", required = false) mediaFile2: MultipartFile?,
         session: HttpSession,
     ): ResponseEntity<ApiResponse<*>> {
         val sessionUser = session.getAttribute(SESSION_USER_KEY) as? SessionUser
@@ -50,9 +52,11 @@ class ExperienceDetailController(
 
         val photoUrl = photoFile?.let { fileStorageService.storePhoto(it) }
         val photoUrl2 = photoFile2?.let { fileStorageService.storePhoto(it) }
+        val mediaUrl = mediaFile?.let { fileStorageService.storePhoto(it) }
+        val mediaUrl2 = mediaFile2?.let { fileStorageService.storePhoto(it) }
 
         return ResponseEntity.ok(ApiResponse.success(
-            experienceDetailService.createExperienceDetail(sessionUser.id, request, photoUrl, photoUrl2)
+            experienceDetailService.createExperienceDetail(sessionUser.id, request, photoUrl, photoUrl2, mediaUrl, mediaUrl2)
         ))
     }
 }
