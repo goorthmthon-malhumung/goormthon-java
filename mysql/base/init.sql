@@ -114,7 +114,7 @@ INSERT INTO category_intro (category_type, category_name, introduction) VALUES
 -- =============================================
 
 -- member (멘토 4명 + 멘티 4명)
-INSERT INTO member (name, phone, password, is_mentor, job_title, experience, introduce) VALUES
+INSERT INTO member (name, phone, password, is_mentor, job_title, work_year, introduce) VALUES
 ('김해녀', '010-1111-0001', '$2a$10$dummyhash1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '해녀',      20, '제주 바다와 함께한 20년 경력의 해녀입니다. 물질 기술과 해녀 문화를 나누고 싶습니다.'),
 ('박돌담', '010-1111-0002', '$2a$10$dummyhash2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '돌담 장인',  15, '제주 현무암 돌담을 15년째 쌓아온 장인입니다. 전통 방식 그대로의 기술을 전수합니다.'),
 ('이감귤', '010-1111-0003', '$2a$10$dummyhash3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', TRUE,  '감귤 농부',  10, '서귀포에서 10년째 감귤 농사를 짓고 있습니다. 수확부터 출하까지 함께합니다.'),
