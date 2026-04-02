@@ -1,6 +1,7 @@
-package kr.hackathon.domain.user.entity
+package kr.hackathon.domain.job.entity
 
 import jakarta.persistence.*
+import kr.hackathon.domain.user.entity.Member
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -8,29 +9,19 @@ import java.time.LocalDateTime
 
 @EntityListeners(AuditingEntityListener::class)
 @Entity
-@Table(name = "member")
-class Member(
-    @Column(nullable = false, unique = true)
-    val name: String,
+@Table(name = "favorite_job_log")
+class FavoriteJobLog(
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    val user: Member,
 
-    @Column(nullable = false, unique = true)
-    val phone: String,
-
-    @Column(nullable = false)
-    val password: String,
-
-    @Column(nullable = false)
-    val isMentor: Boolean = false,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "job_id", nullable = false)
+    val job: Job,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
-
-    var introduce: String = ""
-
-    var interests: String = ""
-
-    var workYear: Int = 0
 
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()

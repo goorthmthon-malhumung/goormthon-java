@@ -4,6 +4,7 @@ import kr.hackathon.domain.user.entity.Member
 import kr.hackathon.domain.user.repository.MemberRepository
 import kr.hackathon.service.user.request.SignInRequest
 import kr.hackathon.service.user.request.SignUpRequest
+import kr.hackathon.service.user.response.MemberInfoResponse
 import kr.hackathon.service.user.response.SignUpResponse
 import kr.hackathon.service.user.session.SessionUser
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -27,10 +28,26 @@ class UserService(
                 phone = request.phone,
                 password = passwordEncoder.encode(request.password),
                 isMentor = request.isMentor,
-            )
+            ).apply {
+                introduce = request.introduce
+                interests = request.interests
+                workYear = request.workYear
+            }
         )
 
         return user.toSignUpResponse() to user.toSessionUser()
+    }
+
+    @Transactional(readOnly = true)
+    fun getMemberInfo(memberId: Long): MemberInfoResponse {
+        val member = userRepository.findById(memberId)
+            .orElseThrow { IllegalArgumentException("존재하지 않는 회원입니다.") }
+        return MemberInfoResponse(
+            id = member.id,
+            name = member.name,
+            isMentor = member.isMentor,
+            introduce = member.introduce,
+        )
     }
 
     fun signIn(request: SignInRequest): SessionUser {

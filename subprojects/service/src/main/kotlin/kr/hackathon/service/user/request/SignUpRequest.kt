@@ -5,4 +5,7 @@ data class SignUpRequest(
     val phone: String,
     val password: String,
     val isMentor: Boolean,
+    val introduce: String = "",
+    val interests: String = "",
+    val workYear: Int = 0
 )

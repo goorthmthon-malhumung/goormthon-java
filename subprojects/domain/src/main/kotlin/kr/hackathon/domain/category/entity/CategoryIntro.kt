@@ -1,4 +1,4 @@
-package kr.hackathon.domain.user.entity
+package kr.hackathon.domain.category.entity
 
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
@@ -8,33 +8,29 @@ import java.time.LocalDateTime
 
 @EntityListeners(AuditingEntityListener::class)
 @Entity
-@Table(name = "member")
-class Member(
-    @Column(nullable = false, unique = true)
-    val name: String,
-
-    @Column(nullable = false, unique = true)
-    val phone: String,
-
+@Table(name = "category_intro")
+class CategoryIntro(
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    val password: String,
+    val categoryType: CategoryType,
 
-    @Column(nullable = false)
-    val isMentor: Boolean = false,
+    @Column(nullable = false, length = 100)
+    val categoryName: String,
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    val introduction: String,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
-
-    var introduce: String = ""
-
-    var interests: String = ""
-
-    var workYear: Int = 0
 
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()
 
     @LastModifiedDate
     var updatedAt: LocalDateTime = LocalDateTime.now()
+}
+
+enum class CategoryType {
+    EXPERIENCE, JOB
 }

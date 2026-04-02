@@ -11,6 +11,7 @@ import kr.hackathon.service.user.session.SessionUser
 import kr.hackathon.ui.api.common.response.ApiResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -53,6 +54,14 @@ class UserController(
         val sessionUser = session.getAttribute(SESSION_USER_KEY) as? SessionUser
             ?: return ResponseEntity.ok(ApiResponse.success(null))
         return ResponseEntity.ok(ApiResponse.success(sessionUser))
+    }
+
+    @Operation(summary = "회원 정보 조회", description = "회원 ID로 이름, 멘토 여부, 소개 글을 조회합니다.")
+    @GetMapping("/{memberId}")
+    fun getMemberInfo(
+        @PathVariable memberId: Long,
+    ): ResponseEntity<ApiResponse<*>> {
+        return ResponseEntity.ok(ApiResponse.success(userService.getMemberInfo(memberId)))
     }
 
     @Operation(summary = "로그아웃", description = "세션을 삭제하고 로그아웃합니다.")

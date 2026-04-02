@@ -1,5 +1,6 @@
 dependencies {
     api(project(":domain"))
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
 
 tasks {
