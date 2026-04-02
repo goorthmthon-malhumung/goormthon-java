@@ -101,5 +101,6 @@ INSERT INTO category_intro (category_type, category_name, introduction) VALUES
 ('JOB', 'MOKJANG', '${experience} 경력의 ${name} 목장지기입니다. 제주의 드넓은 초원에서 말과 소를 돌보며 쌓아온 경험을 바탕으로, 동물 관리와 목초지 운영의 실질적인 노하우를 차분히 나눠드립니다.');
 
 
-GRANT ALL PRIVILEGES ON mydb . * TO 'myuser'@'%' IDENTIFIED BY 'mypassword';
+CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypassword';
+GRANT ALL PRIVILEGES ON mydb.* TO 'myuser'@'%';
 FLUSH PRIVILEGES;
